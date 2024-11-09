@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <h1>Liste des Vêtements</h1>
+    <table width="100%">
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Marque</th>
+            <th>Prix</th>
+            <th>Status</th>
+            <th *ngIf="authServ.testerAdmin()">Action</th>
+
+            </tr>
+            </thead>
+            <tbody *ngFor="let v of tab_vet">
+            <tr >
+            <td>{{v.id}}</td>
+            <td>{{v.nom | uppercase}}</td>
+            <td>{{v.description}}</td>
+            <td>{{v.taille}}</td>
+            <td>{{v.couleur}}</td>
+            <td>{{v.mrq.nomMarque}}</td>
+            <td [ngStyle]="v.prix <= 15 ? statusStyle:null">{{v.prix}}</td>
+            <td *ngIf="v.prix > 30">Haut de gamme</td>
+            <td *ngIf="v.prix <= 30 && v.prix > 15">Milieu de gamme</td>
+            <td [ngStyle]="statusStyle" *ngIf="v.prix <= 15">Abordable</td>
+
+            <td *ngIf="authServ.testerAdmin()">
+                <a class="btn btn-warning" [routerLink]="['/updateVetement',v.id]">
+                    <img src="../assets/img/edit.png" height="32" width="32"></a>
+                <a button type="submit" (click)="suppVetement(v)" class="btn btn-danger"> <img src="../assets/img/delete.png" height="32" width="32"></a>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>

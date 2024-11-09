@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>Ajouter un vêtement</h2>
+    <form >
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >ID</label>
+    
+    <input type="number"[(ngModel)]="newVet.id" name="id" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >Nom</label>
+    
+    <input type="text"[(ngModel)]="newVet.nom" name="nom" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Description</label>
+    
+    <input type="text"[(ngModel)]="newVet.description" name="description" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Taille</label>
+    <input type="text" [(ngModel)]="newVet.taille" name="taille" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Couleur</label>
+        <input type="text" [(ngModel)]="newVet.couleur" name="couleur" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <select class="form-control form-control-lg" name="marqueid" [(ngModel)]="newId">
+            <option *ngFor="let m of marques" [value]="m.idMarque"> {{m.nomMarque}}  </option>
+            </select> 
+            </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Prix</label>
+    
+    <input type="number" [(ngModel)]="newVet.prix" name="prix" class="form-control">
+</div><br>
+    <div class="mt-8">
+    
+    <button type="submit" (click)="ajouterVet()" class="btn btn-success">Ajouter</button>
+    
+    </div>
+    </form>
+    </div>
+   

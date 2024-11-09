@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <h1>chercher un Vêtement</h1>
+    <form name="f1">
+        Choisir un critère de recherche :
+        <input type="radio" [(ngModel)]="critere" value="nom" name="boh"> par nom
+        <input type="radio" [(ngModel)]="critere" value="marque" name="boh"> par marque
+        <input type="radio" [(ngModel)]="critere" value="prix" name="boh"> par prix
+
+        </form><br>
+        <div [ngSwitch]="critere">
+    <form name="f2" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 " *ngSwitchCase="'nom'">
+        <label>Nom à chercher </label>
+        <input type="text" class="form-control" name="nom" class="form-control" #nomClo (keyup)="chercherParNom(nomClo.value)">
+        </div>
+        <div *ngSwitchCase="'marque'" class="form-group">
+            Marque à chercher 
+            <select class="form-control form-control-lg" name="idMarque" [(ngModel)]="mrqidRech" (change)="chercherParMarque()">
+            <option value="0">Tous</option>
+            <option *ngFor="let mrq of list_mrq" value={{mrq.idMarque}}>{{mrq.nomMarque}}</option>
+            </select>
+            </div>
+            <div *ngSwitchCase="'prix'" class="form-group">
+                Prix à chercher 
+               
+        <input type="number" class="form-control" name="prix" class="form-control" #prix (keyup)="chercherParPrix(prix.value)">
+                
+                </div>
+       
+        </form>
+        </div>
+    <table width="100%">
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Marque</th>
+            <th>Prix</th>
+            <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let v of list_clo">
+            <td>{{v.id}}</td>
+            <td>{{v.nom | uppercase}}</td>
+            <td>{{v.description}}</td>
+            <td>{{v.taille}}</td>
+            <td>{{v.couleur}}</td>
+            <td>{{v.mrq.nomMarque}}</td>
+            <td>{{v.prix}}</td>
+            
+            
+            </tr>
+    </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+        
